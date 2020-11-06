@@ -1,0 +1,445 @@
+#annotated notes from my terminal readout 
+
+#moving into directory with files
+cd ~/Desktop/JLTrun1/AG6445/
+
+
+(base) gussmac2019:AG6445 62t$ ls
+FAL50017_pass_barcode08_048bbb06_0.fastq
+FAL50017_pass_barcode08_048bbb06_1.fastq
+FAL50017_pass_barcode08_048bbb06_2.fastq
+
+#activating environment with conda packages
+(base) gussmac2019:AG6445 62t$ conda activate nanopore
+
+(nanopore) gussmac2019:AG6445 62t$ #Concatenate all .fastq files
+(nanopore) gussmac2019:AG6445 62t$ cat *.fastq > catAG6445.fastq
+
+(nanopore) gussmac2019:AG6445 62t$ ls
+FAL50017_pass_barcode08_048bbb06_0.fastq
+FAL50017_pass_barcode08_048bbb06_1.fastq
+FAL50017_pass_barcode08_048bbb06_2.fastq
+catAG6445.fastq
+
+
+(nanopore) gussmac2019:AG6445 62t$ mkdir ~/Desktop/JLTrun1/AG6445/AG6445filtered/
+
+(nanopore) gussmac2019:AG6445 62t$ ls
+AG6445filtered
+FAL50017_pass_barcode08_048bbb06_0.fastq
+FAL50017_pass_barcode08_048bbb06_1.fastq
+FAL50017_pass_barcode08_048bbb06_2.fastq
+catAG6445.fastq
+
+#filtering reads
+(nanopore) gussmac2019:AG6445 62t$ filtlong --min_mean_q 93 --min_length 3000 catAG6445.fastq > ~/Desktop/JLTrun1/AG6445/AG6445filtered/AG6445filtered.fq
+
+Scoring long reads
+  12,000 reads (126,772,176 bp)
+
+Outputting passed long reads
+
+(nanopore) gussmac2019:AG6445 62t$ mini_assemble -i ~/Desktop/JLTrun1/AG6445/AG6445filtered/AG6445filtered.fq  -o denovo -p AG6445_denovo -c -m 6
+Copying FASTX input to workspace: /Users/62t/Desktop/JLTrun1/AG6445/AG6445filtered/AG6445filtered.fq > denovo/AG6445_denovo.fa.gz
+Trimming reads...
+
+Loading reads
+AG6445_denovo.fa.gz
+5,551 reads loaded
+
+
+Looking for known adapter sets
+1,000 / 1,000 (100.0%)
+                                        Best               
+                                        read       Best    
+                                        start      read end
+  Set                                   %ID        %ID     
+  SQK-NSK007                                86.2       75.0
+  Rapid                                    100.0        0.0
+  RBK004_upstream                           89.5        0.0
+  SQK-MAP006                                67.9       78.3
+  SQK-MAP006 short                          85.2       72.0
+  PCR adapters 1                            75.0       77.3
+  PCR adapters 2                            73.9       78.3
+  PCR adapters 3                            73.1       74.1
+  1D^2 part 1                               70.4       71.4
+  1D^2 part 2                               78.8       69.7
+  cDNA SSP                                  67.4       70.0
+  Barcode 1 (reverse)                       75.0       72.0
+  Barcode 2 (reverse)                       69.2       76.0
+  Barcode 3 (reverse)                       72.0       73.1
+  Barcode 4 (reverse)                       69.2       72.0
+  Barcode 5 (reverse)                       70.8       75.0
+  Barcode 6 (reverse)                       76.0       73.1
+  Barcode 7 (reverse)                       70.4       75.0
+  Barcode 8 (reverse)                       76.9       72.0
+  Barcode 9 (reverse)                       72.4       73.1
+  Barcode 10 (reverse)                      80.0       73.1
+  Barcode 11 (reverse)                      72.0       73.1
+  Barcode 12 (reverse)                      73.1       74.1
+  Barcode 1 (forward)                       76.0       75.0
+  Barcode 2 (forward)                       75.0       76.0
+  Barcode 3 (forward)                       77.8       76.9
+  Barcode 4 (forward)                       83.3       73.1
+  Barcode 5 (forward)                       76.9       69.2
+  Barcode 6 (forward)                       69.2       74.1
+  Barcode 7 (forward)                       73.1       75.0
+  Barcode 8 (forward)                      100.0       72.0
+  Barcode 9 (forward)                       72.0       72.4
+  Barcode 10 (forward)                      73.1       72.4
+  Barcode 11 (forward)                      76.0       73.1
+  Barcode 12 (forward)                      72.0       72.0
+  Barcode 13 (forward)                      70.8       76.0
+  Barcode 14 (forward)                      68.0       72.0
+  Barcode 15 (forward)                      70.4       73.1
+  Barcode 16 (forward)                      72.0       74.1
+  Barcode 17 (forward)                      69.2       73.1
+  Barcode 18 (forward)                      68.0       72.0
+  Barcode 19 (forward)                      76.0       75.0
+  Barcode 20 (forward)                      72.0       73.1
+  Barcode 21 (forward)                      74.1       72.0
+  Barcode 22 (forward)                      72.0       75.0
+  Barcode 23 (forward)                      73.1       74.1
+  Barcode 24 (forward)                      73.1       72.4
+  Barcode 25 (forward)                      69.2       75.0
+  Barcode 26 (forward)                      77.8       79.2
+  Barcode 27 (forward)                      72.0       71.4
+  Barcode 28 (forward)                      73.1       71.4
+  Barcode 29 (forward)                      73.1       73.1
+  Barcode 30 (forward)                      72.0       75.0
+  Barcode 31 (forward)                      76.0       73.1
+  Barcode 32 (forward)                      76.0       76.0
+  Barcode 33 (forward)                      72.0       72.0
+  Barcode 34 (forward)                      72.0       83.3
+  Barcode 35 (forward)                      73.3       75.0
+  Barcode 36 (forward)                      68.0       72.0
+  Barcode 37 (forward)                      76.0       73.1
+  Barcode 38 (forward)                      74.1       71.4
+  Barcode 39 (forward)                      72.0       73.1
+  Barcode 40 (forward)                      74.1       73.1
+  Barcode 41 (forward)                      72.4       75.0
+  Barcode 42 (forward)                      74.1       76.0
+  Barcode 43 (forward)                      76.9       73.3
+  Barcode 44 (forward)                      70.4       75.0
+  Barcode 45 (forward)                      70.4       72.0
+  Barcode 46 (forward)                      75.0       73.1
+  Barcode 47 (forward)                      73.1       73.1
+  Barcode 48 (forward)                      72.0       76.9
+  Barcode 49 (forward)                      72.0       75.0
+  Barcode 50 (forward)                      75.0       80.0
+  Barcode 51 (forward)                      74.1       76.9
+  Barcode 52 (forward)                      71.4       72.0
+  Barcode 53 (forward)                      70.8       76.0
+  Barcode 54 (forward)                      68.0       72.0
+  Barcode 55 (forward)                      70.8       73.1
+  Barcode 56 (forward)                      76.9       76.9
+  Barcode 57 (forward)                      73.1       73.1
+  Barcode 58 (forward)                      72.0       73.1
+  Barcode 59 (forward)                      70.4       76.0
+  Barcode 60 (forward)                      72.4       73.1
+  Barcode 61 (forward)                      72.0       73.1
+  Barcode 62 (forward)                      75.0       72.0
+  Barcode 63 (forward)                      79.2       72.0
+  Barcode 64 (forward)                      80.8       75.0
+  Barcode 65 (forward)                      74.1       76.0
+  Barcode 66 (forward)                      73.1       74.1
+  Barcode 67 (forward)                      70.8       76.0
+  Barcode 68 (forward)                      69.2       71.4
+  Barcode 69 (forward)                      70.8       73.1
+  Barcode 70 (forward)                      72.0       76.0
+  Barcode 71 (forward)                      70.8       73.1
+  Barcode 72 (forward)                      76.9       73.1
+  Barcode 73 (forward)                      71.4       72.0
+  Barcode 74 (forward)                      75.0       73.1
+  Barcode 75 (forward)                      69.2       74.1
+  Barcode 76 (forward)                      72.4       79.2
+  Barcode 77 (forward)                      72.4       72.0
+  Barcode 78 (forward)                      69.2       72.0
+  Barcode 79 (forward)                      76.9       73.1
+  Barcode 80 (forward)                      79.2       76.0
+  Barcode 81 (forward)                      71.4       74.1
+  Barcode 82 (forward)                      71.4       79.2
+  Barcode 83 (forward)                      72.0       76.0
+  Barcode 84 (forward)                      72.0       76.0
+  Barcode 85 (forward)                      70.8       73.1
+  Barcode 86 (forward)                      73.1       71.4
+  Barcode 87 (forward)                      73.1       73.1
+  Barcode 88 (forward)                      72.0       74.1
+  Barcode 89 (forward)                      75.0       70.8
+  Barcode 90 (forward)                      71.4       73.1
+  Barcode 91 (forward)                      70.8       75.0
+  Barcode 92 (forward)                      70.8       75.0
+  Barcode 93 (forward)                      76.9       73.1
+  Barcode 94 (forward)                      68.0       75.0
+  Barcode 95 (forward)                      71.4       76.0
+  Barcode 96 (forward)                      70.4       75.0
+
+
+Trimming adapters from read ends
+  Rapid_adapter: GTTTTCGCATTTATCGTGAAACGCTTTCGCGTTTTTCGTGCGCCGCTTCA
+           BC08: TTCAGGGAACAAACCAAGTTACGT
+       BC08_rev: ACGTAACTTGGTTTGTTCCCTGAA
+
+5,551 / 5,551 (100.0%)
+
+5,551 / 5,551 reads had adapters trimmed from their start (619,385 bp removed)
+  124 / 5,551 reads had adapters trimmed from their end (957 bp removed)
+
+
+Discarding reads containing middle adapters
+5,551 / 5,551 (100.0%)
+
+59 / 5,551 reads were discarded based on middle adapters
+
+
+Saving trimmed reads to file
+pigz not found - using gzip to compress
+
+Saved result to /Users/62t/Desktop/JLTrun1/AG6445/denovo/AG6445_denovo_trimmed.fa.gz
+
+Skipped pre-assembly correction.
+Overlapping reads...
+[M::mm_idx_gen::2.699*1.00] collected minimizers
+[M::mm_idx_gen::4.072*1.00] sorted minimizers
+[M::main::4.072*1.00] loaded/built the index for 5492 target sequence(s)
+[M::mm_mapopt_update::4.252*1.00] mid_occ = 44
+[M::mm_idx_stat] kmer size: 15; skip: 5; is_hpc: 0; #seq: 5492
+[M::mm_idx_stat::4.362*1.00] distinct minimizers: 9511085 (72.94% are singletons); average occurrences: 2.771; average spacing: 2.944
+[M::worker_pipeline::49.878*0.99] mapped 5492 sequences
+[M::main] Version: 2.17-r941
+[M::main] CMD: minimap2 -x ava-ont -K 500M -t 1 AG6445_denovo_trimmed.fa.gz AG6445_denovo_trimmed.fa.gz
+[M::main] Real time: 50.004 sec; CPU: 49.649 sec; Peak RSS: 1.206 GB
+Assembling graph...
+[M::main] ===> Step 1: reading read mappings <===
+[M::ma_hit_read::0.153*1.02] read 115256 hits; stored 230378 hits and 5492 sequences (77599430 bp)
+[M::main] ===> Step 2: 1-pass (crude) read selection <===
+[M::ma_hit_sub::0.173*1.02] 5492 query sequences remain after sub
+[M::ma_hit_cut::0.177*1.02] 230318 hits remain after cut
+[M::ma_hit_flt::0.180*1.02] 213681 hits remain after filtering; crude coverage after filtering: 28.86
+[M::main] ===> Step 3: 2-pass (fine) read selection <===
+[M::ma_hit_sub::0.188*1.02] 5492 query sequences remain after sub
+[M::ma_hit_cut::0.192*1.01] 213679 hits remain after cut
+[M::ma_hit_contained::0.196*1.01] 356 sequences and 2548 hits remain after containment removal
+[M::main] ===> Step 4: graph cleaning <===
+[M::ma_sg_gen] read 2538 arcs
+[M::main] ===> Step 4.1: transitive reduction <===
+[M::asg_arc_del_trans] transitively reduced 1814 arcs
+[M::asg_arc_del_multi] removed 0 multi-arcs
+[M::asg_arc_del_asymm] removed 10 asymmetric arcs
+[M::main] ===> Step 4.2: initial tip cutting and bubble popping <===
+[M::asg_cut_tip] cut 0 tips
+[M::asg_pop_bubble] popped 1 bubbles and trimmed 0 tips
+[M::main] ===> Step 4.3: cutting short overlaps (3 rounds in total) <===
+[M::asg_arc_del_short] removed 0 short overlaps
+[M::asg_arc_del_short] removed 0 short overlaps
+[M::asg_arc_del_short] removed 0 short overlaps
+[M::main] ===> Step 4.4: removing short internal sequences and bi-loops <===
+[M::asg_cut_internal] cut 0 internal sequences
+[M::asg_cut_biloop] cut 0 small bi-loops
+[M::asg_cut_tip] cut 0 tips
+[M::asg_pop_bubble] popped 0 bubbles and trimmed 0 tips
+[M::main] ===> Step 4.5: aggressively cutting short overlaps <===
+[M::asg_arc_del_short] removed 0 short overlaps
+[M::main] ===> Step 5: generating unitigs <===
+[M::main] Version: 0.3-r179
+[M::main] CMD: miniasm -s 100 -e 3 -f AG6445_denovo_trimmed.fa.gz AG6445_denovo.paf.gz
+[M::main] Real time: 0.748 sec; CPU: 0.597 sec
+Running racon read shuffle 1...
+Running round 1 consensus...
+[M::mm_idx_gen::0.128*1.02] collected minimizers
+[M::mm_idx_gen::0.169*1.01] sorted minimizers
+[M::main::0.169*1.01] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.178*1.01] mid_occ = 7
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.185*1.01] distinct minimizers: 719310 (97.76% are singletons); average occurrences: 1.026; average spacing: 5.357
+[M::worker_pipeline::5.860*1.00] mapped 5492 sequences
+[M::main] Version: 2.17-r941
+[M::main] CMD: minimap2 -K 500M -t 1 AG6445_denovo.gfa.fa.gz AG6445_denovo_trimmed.fa.gz
+[M::main] Real time: 5.878 sec; CPU: 5.861 sec; Peak RSS: 0.126 GB
+[racon::Polisher::initialize] loaded target sequences 0.042342 s
+[racon::Polisher::initialize] loaded sequences 0.834145 s
+[racon::Polisher::initialize] loaded overlaps 0.011751 s
+[racon::Polisher::initialize] aligning overlaps [=>                  ] 3.051559 [racon::Polisher::initialize] aligning overlaps [==>                 ] 5.470533 [racon::Polisher::initialize] aligning overlaps [===>                ] 8.429748 [racon::Polisher::initialize] aligning overlaps [====>               ] 11.092806[racon::Polisher::initialize] aligning overlaps [=====>              ] 14.166237[racon::Polisher::initialize] aligning overlaps [======>             ] 16.898093[racon::Polisher::initialize] aligning overlaps [=======>            ] 19.752585[racon::Polisher::initialize] aligning overlaps [========>           ] 22.775625[racon::Polisher::initialize] aligning overlaps [=========>          ] 25.563083[racon::Polisher::initialize] aligning overlaps [==========>         ] 28.065294[racon::Polisher::initialize] aligning overlaps [===========>        ] 30.741322[racon::Polisher::initialize] aligning overlaps [============>       ] 33.235462[racon::Polisher::initialize] aligning overlaps [=============>      ] 35.434183[racon::Polisher::initialize] aligning overlaps [==============>     ] 38.040104[racon::Polisher::initialize] aligning overlaps [===============>    ] 40.612534[racon::Polisher::initialize] aligning overlaps [================>   ] 43.040027[racon::Polisher::initialize] aligning overlaps [=================>  ] 45.709686[racon::Polisher::initialize] aligning overlaps [==================> ] 48.247225[racon::Polisher::initialize] aligning overlaps [===================>] 50.471333[racon::Polisher::initialize] aligning overlaps [====================] 53.568233 s
+[racon::Polisher::initialize] transformed data into windows 0.031023 s
+[racon::Polisher::polish] generating consensus [===>                ] 11.157590 [racon::Polisher::polish] generating consensus [====>               ] 15.071732 [racon::Polisher::polish] generating consensus [=====>              ] 19.060664 [racon::Polisher::polish] generating consensus [======>             ] 23.489685 [racon::Polisher::polish] generating consensus [=======>            ] 27.966276 [racon::Polisher::polish] generating consensus [========>           ] 32.336690 [racon::Polisher::polish] generating consensus [=========>          ] 37.227058 [racon::Polisher::polish] generating consensus [==========>         ] 40.817937 [racon::Polisher::polish] generating consensus [===========>        ] 45.126651 [racon::Polisher::polish] generating consensus [============>       ] 49.111816 [racon::Polisher::polish] generating consensus [=============>      ] 52.855701 [racon::Polisher::polish] generating consensus [==============>     ] 57.857912 [racon::Polisher::polish] generating consensus [===============>    ] 61.825394 [racon::Polisher::polish] generating consensus [================>   ] 65.846410 [racon::Polisher::polish] generating consensus [=================>  ] 69.745488 [racon::Polisher::polish] generating consensus [==================> ] 73.869919 [racon::Polisher::polish] generating consensus [===================>] 76.882151 [racon::Polisher::polish] generating consensus [====================] 81.002088 s
+[racon::Polisher::] total = 135.545199 s
+Running round 2 consensus...
+[M::mm_idx_gen::0.133*1.01] collected minimizers
+[M::mm_idx_gen::0.180*1.01] sorted minimizers
+[M::main::0.180*1.01] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.191*1.01] mid_occ = 11
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.199*1.01] distinct minimizers: 719425 (97.20% are singletons); average occurrences: 1.035; average spacing: 5.353
+[M::worker_pipeline::7.540*0.99] mapped 5492 sequences
+[M::main] Version: 2.17-r941
+[M::main] CMD: minimap2 -K 500M -t 1 racon_1_1.fa.gz AG6445_denovo_trimmed.fa.gz
+[M::main] Real time: 7.561 sec; CPU: 7.515 sec; Peak RSS: 0.132 GB
+[racon::Polisher::initialize] loaded target sequences 0.046435 s
+[racon::Polisher::initialize] loaded sequences 0.804857 s
+[racon::Polisher::initialize] loaded overlaps 0.010500 s
+[racon::Polisher::initialize] aligning overlaps [=>                  ] 2.372362 [racon::Polisher::initialize] aligning overlaps [==>                 ] 4.173108 [racon::Polisher::initialize] aligning overlaps [===>                ] 6.251036 [racon::Polisher::initialize] aligning overlaps [====>               ] 8.114155 [racon::Polisher::initialize] aligning overlaps [=====>              ] 10.443873[racon::Polisher::initialize] aligning overlaps [======>             ] 12.379578[racon::Polisher::initialize] aligning overlaps [=======>            ] 14.350150[racon::Polisher::initialize] aligning overlaps [========>           ] 16.370348[racon::Polisher::initialize] aligning overlaps [=========>          ] 18.075380[racon::Polisher::initialize] aligning overlaps [==========>         ] 19.678718[racon::Polisher::initialize] aligning overlaps [===========>        ] 21.661750[racon::Polisher::initialize] aligning overlaps [============>       ] 23.453841[racon::Polisher::initialize] aligning overlaps [=============>      ] 25.119246[racon::Polisher::initialize] aligning overlaps [==============>     ] 27.019992[racon::Polisher::initialize] aligning overlaps [===============>    ] 28.951083[racon::Polisher::initialize] aligning overlaps [================>   ] 30.805898[racon::Polisher::initialize] aligning overlaps [=================>  ] 32.699551[racon::Polisher::initialize] aligning overlaps [==================> ] 34.644878[racon::Polisher::initialize] aligning overlaps [===================>] 36.292702[racon::Polisher::initialize] aligning overlaps [====================] 38.608807 s
+[racon::Polisher::initialize] transformed data into windows 0.033573 s
+[racon::Polisher::polish] generating consensus [===>                ] 11.076473 [racon::Polisher::polish] generating consensus [====>               ] 15.364266 [racon::Polisher::polish] generating consensus [=====>              ] 18.847636 [racon::Polisher::polish] generating consensus [======>             ] 22.489426 [racon::Polisher::polish] generating consensus [=======>            ] 26.554708 [racon::Polisher::polish] generating consensus [========>           ] 30.508527 [racon::Polisher::polish] generating consensus [=========>          ] 34.870542 [racon::Polisher::polish] generating consensus [==========>         ] 39.055288 [racon::Polisher::polish] generating consensus [===========>        ] 43.467693 [racon::Polisher::polish] generating consensus [============>       ] 47.336668 [racon::Polisher::polish] generating consensus [=============>      ] 51.126279 [racon::Polisher::polish] generating consensus [==============>     ] 55.845045 [racon::Polisher::polish] generating consensus [===============>    ] 59.635091 [racon::Polisher::polish] generating consensus [================>   ] 63.426009 [racon::Polisher::polish] generating consensus [=================>  ] 67.187726 [racon::Polisher::polish] generating consensus [==================> ] 71.363996 [racon::Polisher::polish] generating consensus [===================>] 74.379037 [racon::Polisher::polish] generating consensus [====================] 78.547431 s
+[racon::Polisher::] total = 118.109117 s
+Running round 3 consensus...
+[M::mm_idx_gen::0.130*1.01] collected minimizers
+[M::mm_idx_gen::0.173*1.01] sorted minimizers
+[M::main::0.174*1.01] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.184*1.01] mid_occ = 11
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.193*1.01] distinct minimizers: 719496 (97.20% are singletons); average occurrences: 1.035; average spacing: 5.353
+[M::worker_pipeline::6.908*1.00] mapped 5492 sequences
+[M::main] Version: 2.17-r941
+[M::main] CMD: minimap2 -K 500M -t 1 racon_1_2.fa.gz AG6445_denovo_trimmed.fa.gz
+[M::main] Real time: 6.927 sec; CPU: 6.896 sec; Peak RSS: 0.127 GB
+[racon::Polisher::initialize] loaded target sequences 0.051339 s
+[racon::Polisher::initialize] loaded sequences 1.008208 s
+[racon::Polisher::initialize] loaded overlaps 0.013905 s
+[racon::Polisher::initialize] aligning overlaps [=>                  ] 2.712743 [racon::Polisher::initialize] aligning overlaps [==>                 ] 4.708975 [racon::Polisher::initialize] aligning overlaps [===>                ] 7.262660 [racon::Polisher::initialize] aligning overlaps [====>               ] 9.383291 [racon::Polisher::initialize] aligning overlaps [=====>              ] 11.632824[racon::Polisher::initialize] aligning overlaps [======>             ] 13.569676[racon::Polisher::initialize] aligning overlaps [=======>            ] 15.545421[racon::Polisher::initialize] aligning overlaps [========>           ] 17.724927[racon::Polisher::initialize] aligning overlaps [=========>          ] 19.527982[racon::Polisher::initialize] aligning overlaps [==========>         ] 21.105418[racon::Polisher::initialize] aligning overlaps [===========>        ] 22.911365[racon::Polisher::initialize] aligning overlaps [============>       ] 24.690003[racon::Polisher::initialize] aligning overlaps [=============>      ] 26.273851[racon::Polisher::initialize] aligning overlaps [==============>     ] 28.254090[racon::Polisher::initialize] aligning overlaps [===============>    ] 30.261636[racon::Polisher::initialize] aligning overlaps [================>   ] 32.086050[racon::Polisher::initialize] aligning overlaps [=================>  ] 33.934280[racon::Polisher::initialize] aligning overlaps [==================> ] 35.839622[racon::Polisher::initialize] aligning overlaps [===================>] 37.469157[racon::Polisher::initialize] aligning overlaps [====================] 39.707719 s
+[racon::Polisher::initialize] transformed data into windows 0.025808 s
+[racon::Polisher::polish] generating consensus [===>                ] 11.089122 [racon::Polisher::polish] generating consensus [====>               ] 15.044046 [racon::Polisher::polish] generating consensus [=====>              ] 18.652721 [racon::Polisher::polish] generating consensus [======>             ] 22.304148 [racon::Polisher::polish] generating consensus [=======>            ] 26.179488 [racon::Polisher::polish] generating consensus [========>           ] 30.147366 [racon::Polisher::polish] generating consensus [=========>          ] 34.346731 [racon::Polisher::polish] generating consensus [==========>         ] 37.866053 [racon::Polisher::polish] generating consensus [===========>        ] 41.986682 [racon::Polisher::polish] generating consensus [============>       ] 45.790073 [racon::Polisher::polish] generating consensus [=============>      ] 49.354642 [racon::Polisher::polish] generating consensus [==============>     ] 53.873011 [racon::Polisher::polish] generating consensus [===============>    ] 57.752380 [racon::Polisher::polish] generating consensus [================>   ] 61.478659 [racon::Polisher::polish] generating consensus [=================>  ] 65.277137 [racon::Polisher::polish] generating consensus [==================> ] 69.058330 [racon::Polisher::polish] generating consensus [===================>] 71.876280 [racon::Polisher::polish] generating consensus [====================] 76.106943 s
+[racon::Polisher::] total = 116.984666 s
+Running round 4 consensus...
+[M::mm_idx_gen::0.144*1.01] collected minimizers
+[M::mm_idx_gen::0.194*1.01] sorted minimizers
+[M::main::0.195*1.01] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.204*1.01] mid_occ = 11
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.212*1.01] distinct minimizers: 719487 (97.20% are singletons); average occurrences: 1.035; average spacing: 5.353
+[M::worker_pipeline::6.659*1.00] mapped 5492 sequences
+[M::main] Version: 2.17-r941
+[M::main] CMD: minimap2 -K 500M -t 1 racon_1_3.fa.gz AG6445_denovo_trimmed.fa.gz
+[M::main] Real time: 6.676 sec; CPU: 6.652 sec; Peak RSS: 0.139 GB
+[racon::Polisher::initialize] loaded target sequences 0.044715 s
+[racon::Polisher::initialize] loaded sequences 0.841002 s
+[racon::Polisher::initialize] loaded overlaps 0.009485 s
+[racon::Polisher::initialize] aligning overlaps [=>                  ] 2.232835 [racon::Polisher::initialize] aligning overlaps [==>                 ] 4.044107 [racon::Polisher::initialize] aligning overlaps [===>                ] 6.071812 [racon::Polisher::initialize] aligning overlaps [====>               ] 8.053358 [racon::Polisher::initialize] aligning overlaps [=====>              ] 10.237863[racon::Polisher::initialize] aligning overlaps [======>             ] 12.299368[racon::Polisher::initialize] aligning overlaps [=======>            ] 14.298769[racon::Polisher::initialize] aligning overlaps [========>           ] 16.417790[racon::Polisher::initialize] aligning overlaps [=========>          ] 18.162936[racon::Polisher::initialize] aligning overlaps [==========>         ] 19.832897[racon::Polisher::initialize] aligning overlaps [===========>        ] 21.646158[racon::Polisher::initialize] aligning overlaps [============>       ] 23.432976[racon::Polisher::initialize] aligning overlaps [=============>      ] 25.067588[racon::Polisher::initialize] aligning overlaps [==============>     ] 26.980677[racon::Polisher::initialize] aligning overlaps [===============>    ] 28.907568[racon::Polisher::initialize] aligning overlaps [================>   ] 30.758497[racon::Polisher::initialize] aligning overlaps [=================>  ] 32.686596[racon::Polisher::initialize] aligning overlaps [==================> ] 34.656308[racon::Polisher::initialize] aligning overlaps [===================>] 36.197363[racon::Polisher::initialize] aligning overlaps [====================] 38.423602 s
+[racon::Polisher::initialize] transformed data into windows 0.024727 s
+[racon::Polisher::polish] generating consensus [===>                ] 10.483447 [racon::Polisher::polish] generating consensus [====>               ] 14.299098 [racon::Polisher::polish] generating consensus [=====>              ] 17.824390 [racon::Polisher::polish] generating consensus [======>             ] 21.305164 [racon::Polisher::polish] generating consensus [=======>            ] 25.065718 [racon::Polisher::polish] generating consensus [========>           ] 28.728333 [racon::Polisher::polish] generating consensus [=========>          ] 32.705557 [racon::Polisher::polish] generating consensus [==========>         ] 36.087238 [racon::Polisher::polish] generating consensus [===========>        ] 40.080994 [racon::Polisher::polish] generating consensus [============>       ] 43.765482 [racon::Polisher::polish] generating consensus [=============>      ] 47.234275 [racon::Polisher::polish] generating consensus [==============>     ] 51.459558 [racon::Polisher::polish] generating consensus [===============>    ] 55.062130 [racon::Polisher::polish] generating consensus [================>   ] 58.541480 [racon::Polisher::polish] generating consensus [=================>  ] 62.024108 [racon::Polisher::polish] generating consensus [==================> ] 65.762512 [racon::Polisher::polish] generating consensus [===================>] 68.533626 [racon::Polisher::polish] generating consensus [====================] 72.407258 s
+[racon::Polisher::] total = 111.812504 s
+Running round 5 consensus...
+[M::mm_idx_gen::0.133*1.02] collected minimizers
+[M::mm_idx_gen::0.174*1.01] sorted minimizers
+[M::main::0.174*1.01] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.183*1.01] mid_occ = 11
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.191*1.01] distinct minimizers: 719461 (97.20% are singletons); average occurrences: 1.035; average spacing: 5.353
+[M::worker_pipeline::6.807*1.00] mapped 5492 sequences
+[M::main] Version: 2.17-r941
+[M::main] CMD: minimap2 -K 500M -t 1 racon_1_4.fa.gz AG6445_denovo_trimmed.fa.gz
+[M::main] Real time: 6.822 sec; CPU: 6.809 sec; Peak RSS: 0.134 GB
+[racon::Polisher::initialize] loaded target sequences 0.041649 s
+[racon::Polisher::initialize] loaded sequences 0.784723 s
+[racon::Polisher::initialize] loaded overlaps 0.010131 s
+[racon::Polisher::initialize] aligning overlaps [=>                  ] 2.240485 [racon::Polisher::initialize] aligning overlaps [==>                 ] 4.009532 [racon::Polisher::initialize] aligning overlaps [===>                ] 5.942441 [racon::Polisher::initialize] aligning overlaps [====>               ] 7.885008 [racon::Polisher::initialize] aligning overlaps [=====>              ] 9.958456 [racon::Polisher::initialize] aligning overlaps [======>             ] 11.934946[racon::Polisher::initialize] aligning overlaps [=======>            ] 13.939948[racon::Polisher::initialize] aligning overlaps [========>           ] 16.007848[racon::Polisher::initialize] aligning overlaps [=========>          ] 17.821063[racon::Polisher::initialize] aligning overlaps [==========>         ] 19.452030[racon::Polisher::initialize] aligning overlaps [===========>        ] 21.437794[racon::Polisher::initialize] aligning overlaps [============>       ] 23.154475[racon::Polisher::initialize] aligning overlaps [=============>      ] 24.807155[racon::Polisher::initialize] aligning overlaps [==============>     ] 26.858301[racon::Polisher::initialize] aligning overlaps [===============>    ] 28.643938[racon::Polisher::initialize] aligning overlaps [================>   ] 30.366395[racon::Polisher::initialize] aligning overlaps [=================>  ] 32.128794[racon::Polisher::initialize] aligning overlaps [==================> ] 34.134877[racon::Polisher::initialize] aligning overlaps [===================>] 35.648787[racon::Polisher::initialize] aligning overlaps [====================] 37.967310 s
+[racon::Polisher::initialize] transformed data into windows 0.033804 s
+[racon::Polisher::polish] generating consensus [===>                ] 11.368578 [racon::Polisher::polish] generating consensus [====>               ] 15.303727 [racon::Polisher::polish] generating consensus [=====>              ] 18.812286 [racon::Polisher::polish] generating consensus [======>             ] 22.464507 [racon::Polisher::polish] generating consensus [=======>            ] 26.372790 [racon::Polisher::polish] generating consensus [========>           ] 30.172688 [racon::Polisher::polish] generating consensus [=========>          ] 34.301226 [racon::Polisher::polish] generating consensus [==========>         ] 37.663780 [racon::Polisher::polish] generating consensus [===========>        ] 41.902965 [racon::Polisher::polish] generating consensus [============>       ] 45.729603 [racon::Polisher::polish] generating consensus [=============>      ] 49.367855 [racon::Polisher::polish] generating consensus [==============>     ] 54.169453 [racon::Polisher::polish] generating consensus [===============>    ] 57.954856 [racon::Polisher::polish] generating consensus [================>   ] 61.892430 [racon::Polisher::polish] generating consensus [=================>  ] 65.600335 [racon::Polisher::polish] generating consensus [==================> ] 69.400913 [racon::Polisher::polish] generating consensus [===================>] 72.302011 [racon::Polisher::polish] generating consensus [====================] 76.878915 s
+[racon::Polisher::] total = 115.789727 s
+Running round 6 consensus...
+[M::mm_idx_gen::0.141*1.01] collected minimizers
+[M::mm_idx_gen::0.180*1.01] sorted minimizers
+[M::main::0.180*1.01] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.189*1.01] mid_occ = 11
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.197*1.01] distinct minimizers: 719502 (97.20% are singletons); average occurrences: 1.035; average spacing: 5.353
+[M::worker_pipeline::7.094*0.99] mapped 5492 sequences
+[M::main] Version: 2.17-r941
+[M::main] CMD: minimap2 -K 500M -t 1 racon_1_5.fa.gz AG6445_denovo_trimmed.fa.gz
+[M::main] Real time: 7.116 sec; CPU: 7.076 sec; Peak RSS: 0.127 GB
+[racon::Polisher::initialize] loaded target sequences 0.048138 s
+[racon::Polisher::initialize] loaded sequences 0.887341 s
+[racon::Polisher::initialize] loaded overlaps 0.010836 s
+[racon::Polisher::initialize] aligning overlaps [=>                  ] 2.385632 [racon::Polisher::initialize] aligning overlaps [==>                 ] 4.174121 [racon::Polisher::initialize] aligning overlaps [===>                ] 6.191026 [racon::Polisher::initialize] aligning overlaps [====>               ] 8.003296 [racon::Polisher::initialize] aligning overlaps [=====>              ] 10.201116[racon::Polisher::initialize] aligning overlaps [======>             ] 12.086771[racon::Polisher::initialize] aligning overlaps [=======>            ] 13.958911[racon::Polisher::initialize] aligning overlaps [========>           ] 15.976267[racon::Polisher::initialize] aligning overlaps [=========>          ] 17.777999[racon::Polisher::initialize] aligning overlaps [==========>         ] 19.601544[racon::Polisher::initialize] aligning overlaps [===========>        ] 21.482134[racon::Polisher::initialize] aligning overlaps [============>       ] 23.356021[racon::Polisher::initialize] aligning overlaps [=============>      ] 25.021633[racon::Polisher::initialize] aligning overlaps [==============>     ] 27.023217[racon::Polisher::initialize] aligning overlaps [===============>    ] 28.949534[racon::Polisher::initialize] aligning overlaps [================>   ] 30.879081[racon::Polisher::initialize] aligning overlaps [=================>  ] 32.789988[racon::Polisher::initialize] aligning overlaps [==================> ] 34.788843[racon::Polisher::initialize] aligning overlaps [===================>] 36.383639[racon::Polisher::initialize] aligning overlaps [====================] 38.903217 s
+[racon::Polisher::initialize] transformed data into windows 0.029259 s
+[racon::Polisher::polish] generating consensus [===>                ] 11.210055 [racon::Polisher::polish] generating consensus [====>               ] 15.117544 [racon::Polisher::polish] generating consensus [=====>              ] 18.803076 [racon::Polisher::polish] generating consensus [======>             ] 22.457133 [racon::Polisher::polish] generating consensus [=======>            ] 26.307262 [racon::Polisher::polish] generating consensus [========>           ] 30.067593 [racon::Polisher::polish] generating consensus [=========>          ] 34.409102 [racon::Polisher::polish] generating consensus [==========>         ] 37.653215 [racon::Polisher::polish] generating consensus [===========>        ] 41.953909 [racon::Polisher::polish] generating consensus [============>       ] 45.548621 [racon::Polisher::polish] generating consensus [=============>      ] 49.184007 [racon::Polisher::polish] generating consensus [==============>     ] 53.788564 [racon::Polisher::polish] generating consensus [===============>    ] 57.453161 [racon::Polisher::polish] generating consensus [================>   ] 61.279826 [racon::Polisher::polish] generating consensus [=================>  ] 64.980491 [racon::Polisher::polish] generating consensus [==================> ] 68.976812 [racon::Polisher::polish] generating consensus [===================>] 71.929389 [racon::Polisher::polish] generating consensus [====================] 76.141191 s
+[racon::Polisher::] total = 116.085898 s
+Waiting for cleanup.
+Final assembly written to denovo/AG6445_denovo_final.fa. Have a nice day.
+
+#making polish folder
+(nanopore) gussmac2019:AG6445 62t$ mkdir ~/Desktop/JLTrun1/AG6445/AG6445polished/
+(nanopore) gussmac2019:AG6445 62t$ ls
+AG6445filtered
+AG6445polished
+FAL50017_pass_barcode08_048bbb06_0.fastq
+FAL50017_pass_barcode08_048bbb06_1.fastq
+FAL50017_pass_barcode08_048bbb06_2.fastq
+catAG6445.fastq
+denovo
+
+#ready to polish assembly - need to activate medaka
+(nanopore) gussmac2019:AG6445 62t$ conda activate medaka
+
+medaka_consensus -i ~/Desktop/JLTrun1/AG6445/AG6445filtered/AG6445filtered.fq -d ~/Desktop/JLTrun1/AG6445/denovo/AG6445_denovo_final.fa -o ~/Desktop/JLTrun1/AG6445/AG6445polished/ -m r941_min_high_g360
+(medaka) gussmac2019:AG6445 62t$ 
+(medaka) gussmac2019:AG6445 62t$ medaka_consensus -i ~/Desktop/JLTrun1/AG6445/AG6445filtered/AG6445filtered.fq -d ~/Desktop/JLTrun1/AG6445/denovo/AG6445_denovo_final.fa -o ~/Desktop/JLTrun1/AG6445/AG6445polished/ -m r941_min_high_g360
+Checking program versions
+This is medaka 1.0.3
+Program    Version    Required   Pass     
+bcftools   1.10.2     1.9        True     
+bgzip      1.10.2     1.9        True     
+minimap2   2.17       2.11       True     
+samtools   1.10       1.9        True     
+tabix      1.10.2     1.9        True     
+Warning: Output /Users/62t/Desktop/JLTrun1/AG6445/AG6445polished/ already exists, may use old results.
+Aligning basecalls to draft
+Removing previous index file /Users/62t/Desktop/JLTrun1/AG6445/denovo/AG6445_denovo_final.fa.mmi
+Removing previous index file /Users/62t/Desktop/JLTrun1/AG6445/denovo/AG6445_denovo_final.fa.fai
+Constructing minimap index.
+[M::mm_idx_gen::0.134*1.02] collected minimizers
+[M::mm_idx_gen::0.158*1.31] sorted minimizers
+[M::main::0.243*1.19] loaded/built the index for 1 target sequence(s)
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.250*1.19] distinct minimizers: 719479 (97.20% are singletons); average occurrences: 1.035; average spacing: 5.353
+[M::main] Version: 2.17-r941
+[M::main] CMD: minimap2 -I 16G -x map-ont --MD -d /Users/62t/Desktop/JLTrun1/AG6445/denovo/AG6445_denovo_final.fa.mmi /Users/62t/Desktop/JLTrun1/AG6445/denovo/AG6445_denovo_final.fa
+[M::main] Real time: 0.263 sec; CPU: 0.310 sec; Peak RSS: 0.065 GB
+[M::main::0.068*1.03] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.077*1.02] mid_occ = 11
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.085*1.02] distinct minimizers: 719479 (97.20% are singletons); average occurrences: 1.035; average spacing: 5.353
+[M::worker_pipeline::20.515*0.92] mapped 5551 sequences
+[M::main] Version: 2.17-r941
+[M::main] CMD: minimap2 -x map-ont --MD -t 1 -a -A 2 -B 4 -O 4,24 -E 2,1 /Users/62t/Desktop/JLTrun1/AG6445/denovo/AG6445_denovo_final.fa.mmi /Users/62t/Desktop/JLTrun1/AG6445/AG6445filtered/AG6445filtered.fq
+[M::main] Real time: 20.528 sec; CPU: 18.829 sec; Peak RSS: 0.210 GB
+Running medaka consensus
+[19:39:31 - Predict] Processing region(s): utg000001c:0-3987901
+[19:39:31 - Predict] Setting tensorflow threads to 1.
+[19:39:31 - Predict] Processing 4 long region(s) with batching.
+[19:39:31 - Predict] Using model: /opt/miniconda3/envs/medaka/lib/python3.6/site-packages/medaka/data/r941_min_high_g360_model.hdf5.
+[19:39:31 - ModelLoad] Building model with cudnn optimization: False
+[19:39:32 - DLoader] Initializing data loader
+[19:39:32 - Sampler] Initializing sampler for consensus of region utg000001c:0-1000000.
+[19:39:32 - PWorker] Running inference for 4.0M draft bases.
+[19:39:32 - Sampler] Initializing sampler for consensus of region utg000001c:999000-1999000.
+[19:39:32 - Sampler] Initializing sampler for consensus of region utg000001c:1998000-2998000.
+[19:39:32 - Sampler] Initializing sampler for consensus of region utg000001c:2997000-3987901.
+[19:39:33 - Feature] Processed utg000001c:0.0-999999.0 (median depth 19.0)
+[19:39:33 - Sampler] Took 0.93s to make features.
+[19:39:33 - Feature] Processed utg000001c:999000.0-1998999.1 (median depth 20.0)
+[19:39:33 - Sampler] Took 0.95s to make features.
+[19:39:33 - Feature] Processed utg000001c:2997000.0-3987900.0 (median depth 19.0)
+[19:39:33 - Sampler] Took 0.95s to make features.
+[19:39:33 - Feature] Processed utg000001c:1998000.0-2997999.0 (median depth 21.0)
+[19:39:33 - Sampler] Took 0.97s to make features.
+[19:40:00 - PWorker] 17.6% Done (0.7/4.0 Mbases) in 27.6s
+[19:40:00 - PWorker] Samples in cache: 300.
+[19:40:25 - PWorker] 35.2% Done (1.4/4.0 Mbases) in 52.4s
+[19:40:25 - PWorker] Samples in cache: 272.
+[19:40:48 - PWorker] 52.7% Done (2.1/4.0 Mbases) in 76.1s
+[19:40:48 - PWorker] Samples in cache: 172.
+[19:41:13 - PWorker] 70.4% Done (2.8/4.0 Mbases) in 100.6s
+[19:41:13 - PWorker] Samples in cache: 72.
+[19:41:36 - PWorker] 87.8% Done (3.5/4.0 Mbases) in 123.8s
+[19:41:36 - PWorker] Samples in cache: 0.
+[19:41:54 - PWorker] 100.0% Done (4.0/4.0 Mbases) in 141.6s
+[19:41:54 - PWorker] All done, 0 remainder regions.
+[19:41:54 - Predict] Finished processing all regions.
+Using medaka stitch to create consensus.
+[19:41:58 - DataIndex] Loaded 1/1 (100.00%) sample files.
+[19:41:58 - Stitch] Stitching regions: ['utg000001c:0-']
+[19:41:58 - DataIndex] Loaded 1/1 (100.00%) sample files.
+[19:41:58 - Stitch] Processing utg000001c:0-.
+[19:42:03 - Stitch] Used heuristic 0 times for utg000001c:0-.
+Polished assembly written to /Users/62t/Desktop/JLTrun1/AG6445/AG6445polished//consensus.fasta, have a nice day.
+#finished 
